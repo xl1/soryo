@@ -9,6 +9,7 @@
     "start:host": "func start",
     "start": "npm run start:host & npm run watch",
     "preprocess": "ts-node scripts/preprocess.ts",
+    "sample": "ts-node scripts/sample.ts",
     "test": "echo \"No tests yet...\""
   },
   "description": "",
