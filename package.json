@@ -8,6 +8,7 @@
     "prestart": "npm run build && func extensions install",
     "start:host": "func start",
     "start": "npm run start:host & npm run watch",
+    "preprocess": "ts-node scripts/preprocess.ts",
     "test": "echo \"No tests yet...\""
   },
   "description": "",
