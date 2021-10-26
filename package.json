@@ -1,7 +1,7 @@
 {
   "name": "",
   "version": "",
-  "scripts" : {
+  "scripts": {
     "build": "tsc",
     "build:production": "npm run prestart && npm prune --production",
     "watch": "tsc --w",
@@ -16,7 +16,11 @@
   "devDependencies": {
     "@azure/functions": "^1.2.3",
     "@types/node": "^16.11.6",
+    "@types/twitter": "^1.7.1",
     "ts-node": "^10.4.0",
     "typescript": "^4.4.4"
+  },
+  "dependencies": {
+    "twitter": "^1.7.1"
   }
 }
