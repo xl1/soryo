@@ -18,7 +18,7 @@ async function main() {
 
     const containsJoyoKanji = (word: string) => [...word].some(c => joyokanji.has(c));
     const onlyJoyoKanji = (word: string) => [...word].every(c => joyokanji.has(c));
-    const kanaRegex = /[ぁ-んァ-ン]/;
+    const kanaRegex = /[ぁ-んァ-ン０-９]/;
     const containsKana = (word: string) => kanaRegex.test(word);
     
     const outputFile = await fs.open(p('../dic.csv'), 'w');
