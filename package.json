@@ -1,6 +1,7 @@
 {
-  "name": "",
-  "version": "",
+  "name": "soryobot",
+  "version": "0.0.1",
+  "private": true,
   "scripts": {
     "build": "tsc",
     "build:production": "npm run prestart && npm prune --production",
