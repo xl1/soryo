@@ -11,6 +11,7 @@ const client = new Twitter({
 });
 
 export default async function(context: Context) {
+    console.log('invoked');
     const [joyokanji, candidates] = await waitInit;
     const status = sample(joyokanji, candidates);
     await client.post('statuses/update', { status });
