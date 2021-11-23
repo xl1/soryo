@@ -35,14 +35,14 @@ export function sample(joyokanji: Map<string, string[]>, candidates: string[]): 
 
             let kanjiYomi = joyokanji.get(word[0]) || [];
             for (const k of kanjiYomi) {
-                if (kana.startsWith(k)) {
+                if (k.length && kana.startsWith(k)) {
                     return katakanaToHiragana(k) + word.substring(1);
                 }
             }
         
             kanjiYomi = joyokanji.get(word[word.length - 1]) || [];
             for (const k of kanjiYomi) {
-                if (kana.endsWith(k)) {
+                if (k.length && kana.endsWith(k)) {
                     return word.substring(0, word.length - 1) + katakanaToHiragana(k);
                 }
             }
