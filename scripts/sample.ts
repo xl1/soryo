@@ -31,7 +31,7 @@ export function sample(joyokanji: Map<string, string[]>, candidates: string[]): 
     while (true) {
         const [word, kana] = random(candidates).split(',');
         if (word && kana) {
-            if (word.length !== 2 || word.includes('々')) continue;
+            if (word.length !== 2 || /[々ａ-ｚＡ-Ｚα-ω]/.test(word)) continue;
 
             let kanjiYomi = joyokanji.get(word[0]) || [];
             for (const k of kanjiYomi) {
