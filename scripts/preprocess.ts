@@ -1,5 +1,6 @@
 import * as fs from 'fs/promises';
-import { join as pathJoin } from 'path'
+import { join as pathJoin } from 'path';
+import { katakanaToHiragana } from './sample';
 
 const p = (path: string) => pathJoin(__dirname, path);
 
@@ -26,7 +27,7 @@ async function main() {
         for await (const xs of loadCsv(p(`../dic/${name}`))) {
             if (xs.length <= 11) break;
             const word = xs[0];
-            const kana = xs[11];
+            const kana = katakanaToHiragana(xs[11]);
             if (containsJoyoKanji(word) && !onlyJoyoKanji(word) && !containsKana(word)) {
                 await outputFile.write(`${word},${kana}\n`);
             }

@@ -7,9 +7,10 @@ function random<T>(array: T[]): T {
     return array[Math.random() * array.length | 0];
 }
 
-function katakanaToHiragana(value: string): string {
+export function katakanaToHiragana(value: string): string {
     return [...value]
-        .map(c => String.fromCharCode(c.charCodeAt(0) - 0x60))
+        // カタカナはひらがなに変換
+        .map(c => 'ァ' <= c || c <= 'ヴ' ? String.fromCharCode(c.charCodeAt(0) - 0x60) : c)
         .join('');
 }
 
@@ -18,7 +19,7 @@ export async function init(): Promise<[Map<string, string[]>, string[]]> {
     const content = await fs.readFile(p('../joyokanji.csv'), { encoding: 'utf-8' });
     for (const line of content.split('\n')) {
         const [kanji, ...yomi] = line.split(',');
-        joyokanji.set(kanji, yomi);
+        joyokanji.set(kanji, yomi.map(katakanaToHiragana));
     }
 
     const csv = await fs.readFile(p('../dic.csv'), { encoding: 'utf-8' });
@@ -36,14 +37,14 @@ export function sample(joyokanji: Map<string, string[]>, candidates: string[]): 
             let kanjiYomi = joyokanji.get(word[0]) || [];
             for (const k of kanjiYomi) {
                 if (k.length && kana.startsWith(k)) {
-                    return katakanaToHiragana(k) + word.substring(1);
+                    return k + word.substring(1);
                 }
             }
         
             kanjiYomi = joyokanji.get(word[word.length - 1]) || [];
             for (const k of kanjiYomi) {
                 if (k.length && kana.endsWith(k)) {
-                    return word.substring(0, word.length - 1) + katakanaToHiragana(k);
+                    return word.substring(0, word.length - 1) + k;
                 }
             }
         }
